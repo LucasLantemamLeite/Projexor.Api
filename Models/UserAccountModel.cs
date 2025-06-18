@@ -24,4 +24,6 @@ public class UserAccount
         Active = active;
         Role = role;
     }
+
+    protected UserAccount() { }
 }
