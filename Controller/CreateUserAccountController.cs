@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Projexor.Controller.DTO;
 using Projexor.Data.Context;
 using Projexor.Models;
+using Projexor.Services.Authentication;
 using Projexor.Services.Token;
 
 namespace Projexor.Controller;
@@ -18,10 +19,11 @@ public class CreateUserAccount : ControllerBase
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var userAccount = new UserAccount(user_dto.Name, user_dto.Email, user_dto.Password, user_dto.PhoneNumber, user_dto.BirthDate);
+
+            var userAccount = new UserAccount(user_dto.Name, user_dto.Email, user_dto.Password.GenerateHash(), user_dto.PhoneNumber, user_dto.BirthDate);
 
             await context.UserAccounts.AddAsync(userAccount);
-            // await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
 
             return StatusCode(200, new { Message = "Conta criada com sucesso.", TokenKey = JwtServices.GenerateToken(userAccount), Error = "[]" });
         }
