@@ -19,7 +19,6 @@ public class CreateUserAccount : ControllerBase
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-
             var userAccount = new UserAccount(user_dto.Name, user_dto.Email, user_dto.Password.GenerateHash(), user_dto.PhoneNumber, user_dto.BirthDate);
 
             await context.UserAccounts.AddAsync(userAccount);
