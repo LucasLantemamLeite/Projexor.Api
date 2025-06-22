@@ -11,6 +11,7 @@ namespace Projexor.Controller;
 
 [ApiController]
 [Route("v1")]
+[Tags("User")]
 public class CreateUserAccount : ControllerBase
 {
     [HttpPost("user")]

@@ -10,6 +10,7 @@ namespace Projexor.Controller;
 
 [ApiController]
 [Route("v1")]
+[Tags("User")]
 public class LoginUserAccount : ControllerBase
 {
     [HttpPost("login-user")]
